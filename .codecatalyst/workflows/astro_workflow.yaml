@@ -1,4 +1,4 @@
-Name: Workflow_cba7
+Name: AstroWorkflow
 SchemaVersion: '1.0'
 
 # Optional - Set automatic triggers.
@@ -54,4 +54,4 @@ Actions:
           Name: '579856560024'
       Name: env-astro-wordpress
     DependsOn:
-      - Build_9d
+      - AstroBuild
