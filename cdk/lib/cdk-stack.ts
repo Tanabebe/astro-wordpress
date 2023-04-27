@@ -74,5 +74,9 @@ export class CdkStack extends cdk.Stack {
       destinationBucket: s3Bucket,
       distribution: cloudFrontDistribution,
     })
+
+    new cdk.CfnOutput(this, 'CloudFrontUrl', {
+      value: `https://${cloudFrontDistribution.domainName}`,
+    })
   }
 }
