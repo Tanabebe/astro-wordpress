@@ -36,7 +36,7 @@ Actions:
           Name: '579856560024'
       Name: env-astro-wordpress
   CDKdeploy:
-    Identifier: aws/cdk-deploy@v1
+    Identifier: aws/cdk-deploy@v1.0.4
     Inputs:
       Artifacts:
         - build
