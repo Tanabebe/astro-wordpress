@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { AstroCdkStack } from '../lib/astro-cdk-stack';
+import { CdkStack } from '../lib/cdk-stack';
 
 const app = new cdk.App();
-new AstroCdkStack(app, 'AstroCdkStack', {});
+const stackName = app.node.tryGetContext('stack_name') || 'AstroCdkStack';
+new CdkStack(app, stackName, {});
