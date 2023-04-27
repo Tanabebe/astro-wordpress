@@ -11,9 +11,9 @@ export class CdkStack extends cdk.Stack {
     super(scope, id, props)
 
     // S3Bucket
-    const bucketName = 'AstroS3Bucket'
-    const s3Bucket = new s3.Bucket(this, bucketName, {
-      bucketName,
+    const s3Bucket = new s3.Bucket(this, 'AstroS3Bucket', {
+      // bucketNameはlowerCamelかkebab
+      bucketName: 'astro-s3-bucket',
       removalPolicy: cdk.RemovalPolicy.DESTROY,
     })
 
