@@ -32,15 +32,16 @@ Actions:
       Name: env-astro-wordpress
   CDKdeploy:
     Identifier: aws/cdk-deploy@v1.0.4
-    Inputs:
-      Artifacts:
-        - build
     Configuration:
-      StackName: astro-cdk-stack
       CdkRootPath: cdk
+      Context:
+        '{"stack_name":"astro-cdk-stack","resourceName":"{       \"s3BucketName\":
+        \"AstroS3Bucket\",       \"oamIdentityName\":
+        \"OriginAccessIdentity\",       \"cloudFrontDistributionName\":
+        \"AstroCloudFrontDistribution\",       \"bucketDeploymentName\":
+        \"AstroBuildDeployment\"     }"}'
       Region: ap-northeast-1
-      Context: '{"stack_name": "astro-cdk-stack"}'
-      CfnOutputVariables: '["astroBucket"]'
+      StackName: astro-cdk-stack
     Compute:
       Type: Lambda
     Environment:
@@ -50,3 +51,7 @@ Actions:
       Name: env-astro-wordpress
     DependsOn:
       - AstroBuild
+    Inputs:
+      Artifacts:
+        - build
+      Sources: []
