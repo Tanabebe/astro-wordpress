@@ -19,11 +19,6 @@ Actions:
         - Name: build
           Files:
             - cdk/**/*
-      AutoDiscoverReports:
-        Enabled: true
-        ReportNamePrefix: report
-        IncludePaths:
-          - /output/report
     Configuration:
       Steps:
         - Run: npm i
