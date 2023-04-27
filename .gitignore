@@ -11,6 +11,7 @@ benchmark/projects/
 benchmark/results/
 *.log
 package-lock.json
+yarn.lock
 .turbo/
 .eslintcache
 .pnpm-store

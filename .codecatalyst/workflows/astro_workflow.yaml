@@ -26,8 +26,8 @@ Actions:
           - /output/report
     Configuration:
       Steps:
-        - Run: npm i -g yarn
-        - Run: yarn build
+        - Run: npm i
+        - Run: npm run build
     Compute:
       Type: Lambda
     Environment:
