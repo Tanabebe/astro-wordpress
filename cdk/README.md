@@ -15,4 +15,4 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
 ## Astro Build & CDK Deploy
 
-- `yarn build && cd cdk && cdk deploy` emits the synthesized CloudFormation template
+- `npm run build && cd cdk && cdk deploy`

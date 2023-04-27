@@ -47,8 +47,11 @@
     "@aws-cdk/aws-secretsmanager:useAttachedSecretResourcePolicyForSecretTargetAttachments": true,
     "@aws-cdk/aws-redshift:columnId": true,
     "@aws-cdk/aws-stepfunctions-tasks:enableEmrServicePolicyV2": true,
-    "s3": {
-      "bucketName": "astro-page-bucket"
+    "logicalId": {
+      "s3Bucket": "AstroS3Bucket",
+      "oamIdentity": "OriginAccessIdentity",
+      "cloudFrontDistribution": "AstroCloudFrontDistribution",
+      "bucketDeployment": "AstroBuildDeployment"
     }
   }
 }

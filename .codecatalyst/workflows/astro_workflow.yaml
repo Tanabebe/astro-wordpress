@@ -1,4 +1,4 @@
-Name: Workflow_cba7
+Name: AstroWorkflow
 SchemaVersion: '1.0'
 
 # Optional - Set automatic triggers.
@@ -9,7 +9,7 @@ Triggers:
 
 # Required - Define action configurations.
 Actions:
-  Build_9d:
+  AstroBuild:
     Identifier: aws/build@v1.0.0
     Inputs:
       Sources:
@@ -19,11 +19,6 @@ Actions:
         - Name: build
           Files:
             - cdk/**/*
-      AutoDiscoverReports:
-        Enabled: true
-        ReportNamePrefix: report
-        IncludePaths:
-          - /output/report
     Configuration:
       Steps:
         - Run: npm i
@@ -35,17 +30,13 @@ Actions:
         - Role: CodeCatalystWorkflowDevelopmentRole-demo-code-catalysyt
           Name: '579856560024'
       Name: env-astro-wordpress
-  AWSCDKdeploy_ac:
-    Identifier: aws/cdk-deploy@v1
-    Inputs:
-      Artifacts:
-        - build
+  CDKdeploy:
+    Identifier: aws/cdk-deploy@v1.0.4
     Configuration:
-      StackName: astro-cdk-stack
       CdkRootPath: cdk
+      Context: '{"stack_name":"astro-cdk-stack"}'
       Region: ap-northeast-1
-      Context: '{"stack_name": "astro-cdk-stack"}'
-      CfnOutputVariables: '["astroBucket"]'
+      StackName: astro-cdk-stack
     Compute:
       Type: Lambda
     Environment:
@@ -54,4 +45,8 @@ Actions:
           Name: '579856560024'
       Name: env-astro-wordpress
     DependsOn:
-      - Build_9d
+      - AstroBuild
+    Inputs:
+      Artifacts:
+        - build
+      Sources: []
