@@ -34,12 +34,7 @@ Actions:
     Identifier: aws/cdk-deploy@v1.0.4
     Configuration:
       CdkRootPath: cdk
-      Context:
-        '{"stack_name":"astro-cdk-stack","resourceName":"{       \"s3BucketName\":
-        \"AstroS3Bucket\",       \"oamIdentityName\":
-        \"OriginAccessIdentity\",       \"cloudFrontDistributionName\":
-        \"AstroCloudFrontDistribution\",       \"bucketDeploymentName\":
-        \"AstroBuildDeployment\"     }"}'
+      Context: '{"stack_name":"astro-cdk-stack"}'
       Region: ap-northeast-1
       StackName: astro-cdk-stack
     Compute:

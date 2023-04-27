@@ -10,26 +10,17 @@ export class CdkStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props)
 
-    // contextからCloudFormationのリソースに使われる名称の定義を取得
-    const context = this.node.tryGetContext('resourceName')
-    const resource = this.node.tryGetContext(context)
-
-    new cdk.CfnOutput(this, 'resourceName', {
-      value: resource,
-      description: 'resourceName',
-      exportName: 'resourceName',
-    })
-
     // S3Bucket
-    const s3Bucket = new s3.Bucket(this, resource.s3BucketName, {
-      bucketName: resource.s3BucketName,
+    const bucketName = 'AstroS3Bucket'
+    const s3Bucket = new s3.Bucket(this, bucketName, {
+      bucketName,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
     })
 
     // cloudfrontのみからの参照に絞る
     const originAccessIdentity = new cloudfront.OriginAccessIdentity(
       this,
-      resource.oamIdentityName,
+      'OriginAccessIdentity',
       {
         comment: 'astro-cloudfront-distribution-originAccessIdentity',
       }
@@ -53,7 +44,7 @@ export class CdkStack extends cdk.Stack {
     // CloudFront
     const cloudFrontDistribution = new cloudfront.Distribution(
       this,
-      resource.cloudFrontDistributionName,
+      'AstroCloudFrontDistribution',
       {
         comment: 'astro-cloudfront-distribution',
         defaultRootObject: 'index.html',
@@ -78,7 +69,7 @@ export class CdkStack extends cdk.Stack {
     )
 
     // Astroでyarn buildしたdistをS3へアップロードする
-    new s3deploy.BucketDeployment(this, resource.bucketDeploymentName, {
+    new s3deploy.BucketDeployment(this, 'AstroBuildDeployment', {
       sources: [s3deploy.Source.asset('dist')],
       destinationBucket: s3Bucket,
       distribution: cloudFrontDistribution,
