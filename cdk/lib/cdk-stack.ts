@@ -71,7 +71,7 @@ export class CdkStack extends cdk.Stack {
 
     // Astroでyarn buildしたdistをS3へアップロードする
     new s3deploy.BucketDeployment(this, 'AstroBucketDeployment', {
-      sources: [s3deploy.Source.asset('../dist')],
+      sources: [s3deploy.Source.asset('dist')],
       destinationBucket: s3Bucket,
       distribution: cloudFrontDistribution
     })
