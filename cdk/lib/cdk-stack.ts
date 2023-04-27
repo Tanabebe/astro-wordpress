@@ -14,6 +14,12 @@ export class CdkStack extends cdk.Stack {
     const context = this.node.tryGetContext('resourceName')
     const resource = this.node.tryGetContext(context)
 
+    new cdk.CfnOutput(this, 'resourceName', {
+      value: resource,
+      description: 'resourceName',
+      exportName: 'resourceName',
+    })
+
     // S3Bucket
     const s3Bucket = new s3.Bucket(this, resource.s3BucketName, {
       bucketName: resource.s3BucketName,
