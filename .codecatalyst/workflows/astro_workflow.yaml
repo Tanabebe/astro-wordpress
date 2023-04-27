@@ -1,4 +1,4 @@
-Name: Workflow_cba7
+Name: AstroWorkflow
 SchemaVersion: '1.0'
 
 # Optional - Set automatic triggers.
@@ -9,7 +9,7 @@ Triggers:
 
 # Required - Define action configurations.
 Actions:
-  Build_9d:
+  AstroBuild:
     Identifier: aws/build@v1.0.0
     Inputs:
       Sources:
@@ -35,7 +35,7 @@ Actions:
         - Role: CodeCatalystWorkflowDevelopmentRole-demo-code-catalysyt
           Name: '579856560024'
       Name: env-astro-wordpress
-  AWSCDKdeploy_ac:
+  CDKdeploy:
     Identifier: aws/cdk-deploy@v1
     Inputs:
       Artifacts:
